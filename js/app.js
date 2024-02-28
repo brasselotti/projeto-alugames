@@ -1,5 +1,7 @@
 var quantidadeAlugada = 1;
-console.log(quantidadeAlugada);
+var palavraAlugada;
+
+exibirQuantidade(); 
 
 function alterarStatus(id){
     let gameClicado = document.getElementById(`game-${id}`);
@@ -10,18 +12,28 @@ function alterarStatus(id){
 
     if (imagem.classList.contains('dashboard__item__img--rented')) {
         if (confirm(`Você tem certeza que deseja devolver o jogo "${nomeJogo.textContent}"?`)){
-        imagem.classList.remove('dashboard__item__img--rented');
-        botao.classList.remove('dashboard__item__button--return');
-        botao.textContent = 'Alugar';
-        quantidadeAlugada -= 1;
-        console.log(quantidadeAlugada);
-        alert('Jogo devolvido');
+            imagem.classList.remove('dashboard__item__img--rented');
+            botao.classList.remove('dashboard__item__button--return');
+            botao.textContent = 'Alugar';
+            quantidadeAlugada--;
+            //alert('Jogo devolvido');
         }         
     } else {
         imagem.classList.add('dashboard__item__img--rented');
         botao.classList.add('dashboard__item__button--return');
         botao.textContent = 'Devolver';
-        quantidadeAlugada += 1;
-        console.log(quantidadeAlugada);       
+        quantidadeAlugada++;
     }
+
+exibirQuantidade();
+
+}
+
+function exibirQuantidade (){
+    if (quantidadeAlugada === 1){
+        palavraAlugada = 'jogo alugado';
+    } else {
+        palavraAlugada = 'jogos alugados';
+    }
+    console.log(`Você possui ${quantidadeAlugada} ${palavraAlugada}`);
 }
